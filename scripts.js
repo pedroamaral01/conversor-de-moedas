@@ -1,5 +1,5 @@
-const convertButton = document.querySelector(".convert-button")
 const currencySelect = document.querySelector(".currency-select")
+const convertButton = document.querySelector(".convert-button")
 
 function convertValues() {
     const inputCurrencyValue = document.querySelector(".input-currency").value
@@ -28,23 +28,22 @@ function convertValues() {
     currencyValueToConvert.innerHTML = new Intl.NumberFormat("pt-BR", {
         style: "currency",
         currency: "BRL"
-    }).format(inputCurrencyValue)    
+    }).format(inputCurrencyValue)
 }
 
-    function changeCurrency() {
-        const currencyName = document.getElementById("currency-name")
-        const currencyImage = document.querySelector(".currency-img")
+function changeCurrency() {
+    const currencyName = document.querySelector("#currency-name")
+    const currencyImage = document.querySelector(".currency-img")
 
-        if(currencySelect.value == "dolar") {
-            currencyName.innerHTML = "Dolar Americano"
-            currencyImage.src = "./imagens/dolar.png"
-        }
+    if (currencySelect.value == "dolar") {
+        currencyName.innerHTML = "Dolar"
+        currencyImage.src = "./imagens/dolar.png"
+    }
 
-        if(currencySelect.value == "euro") {
-            currencyName.innerHTML = "Euro"
-            currencyImage.src = "./imagens/euro.png"
-        }
-    }    
-
+    if (currencySelect.value == "euro") {
+        currencyName.innerHTML = "Euro"
+        currencyImage.src = "./imagens/euro.png"
+    }
+}
 currencySelect.addEventListener("change", changeCurrency)
 convertButton.addEventListener("click", convertValues)
