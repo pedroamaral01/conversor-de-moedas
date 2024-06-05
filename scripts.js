@@ -1,20 +1,34 @@
 const currencySelect = document.querySelector(".currency-select")
 const convertButton = document.querySelector(".convert-button")
+var parametroRecebidoApi = "";
+
+fetch(`https://economia.awesomeapi.com.br/last/USD-BRL,EUR-BRL${parametroRecebidoApi}`)
+.then(response => {
+  if (!response.ok) {
+    throw new Error('Erro ao buscar a cotação');
+  }
+  return response.json();
+})
+.then(data => {
+    parametroRecebidoApi = data;
+  console.log({...data});
+})
+.catch(error => {
+  console.error('Erro:', error);
+  alert("Erro ao consultar valor moeda")
+});
 
 function convertValues() {
     const inputCurrencyValue = document.querySelector(".input-currency").value
     const currencyValueToConvert = document.querySelector(".currency-value-to-convert") // Valor em Real
     const currencyValueConverted = document.querySelector(".currency-value") // Outras Moedas
 
-    const dolarToday = 4.96
-    const euroToday = 5.31
-
     if (currencySelect.value == "dolar") {
 
         currencyValueConverted.innerHTML = new Intl.NumberFormat("en-US", {
             style: "currency",
             currency: "USD"
-        }).format(inputCurrencyValue / dolarToday)
+        }).format(inputCurrencyValue / parametroRecebidoApi.USDBRL.bid)
     }
 
     if (currencySelect.value == "euro") {
@@ -22,7 +36,7 @@ function convertValues() {
         currencyValueConverted.innerHTML = new Intl.NumberFormat("de-DE", {
             style: "currency",
             currency: "EUR"
-        }).format(inputCurrencyValue / euroToday)
+        }).format(inputCurrencyValue / parametroRecebidoApi.EURBRL.bid)
     }
 
     currencyValueToConvert.innerHTML = new Intl.NumberFormat("pt-BR", {
