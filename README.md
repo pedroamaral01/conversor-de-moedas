@@ -17,4 +17,4 @@ Este projeto é um conversor de moedas que utiliza a API de cotações de moedas
 
 ## Link para o Projeto
 
-Acesse o projeto: https://pedroamaral01.github.io/CurrencyConverter/
+Acesse o projeto: https://pedroamaral01.github.io/conversor-de-moedas/
